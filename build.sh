@@ -7,6 +7,8 @@ fi
 
 if [ ! -d "dist/" ]; then
     mkdir dist
+else
+    rm -r dist/*
 fi
 
 printf "Compiling... "
@@ -28,7 +30,16 @@ printf "Done\n"
 printf "Copying assets..."
 cp -r templates dist/
 cp -r static dist/
-cp -r sass dist/
 printf "Done\n"
+
+printf "Compiling SASS..."
+if [ ! -d "dist/static/css" ]; then
+    mkdir dist/static/css
+fi
+for file in sass/*.sass; do
+    outfile=$(basename "$file" .sass)
+    sass --no-source-map --style compressed "$file" "dist/static/css/$outfile.css"
+done
+printf "OK\n"
 
 printf "Binaries are ready in \"dist\" directory.\n"
