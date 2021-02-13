@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"os"
 
@@ -11,11 +12,14 @@ import (
 var Here string
 // Cfg represents contents of the configuration file.
 var Cfg config
+// Database represents active connection with the PostgreSQL database.
+var Database *sql.DB
 
 func main() {
 	//gin.SetMode(gin.ReleaseMode)
 	Here, _ = os.Executable()
 	Cfg = loadConfig("config.json")
+	Database = connectToDatabase(Cfg.DBAddress, Cfg.DBUser, Cfg.DBPassword, Cfg.DBName, Cfg.DBSslMode)
 
 	router := gin.Default()
 
