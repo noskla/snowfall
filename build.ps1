@@ -35,6 +35,7 @@ Write-Host "Done"
 Write-Host "Copying assets..." -NoNewline
 Copy-Item -Path '.\templates' -Destination '.\dist\' -Recurse
 Copy-Item -Path '.\static' -Destination '.\dist\' -Recurse
+Copy-Item -Path '.\config.json' -Destination '.\dist\'
 Write-Host "Done"
 
 Write-Host "Compiling SASS..." -NoNewline

@@ -30,6 +30,7 @@ printf "Done\n"
 printf "Copying assets..."
 cp -r templates dist/
 cp -r static dist/
+cp config.json dist/
 printf "Done\n"
 
 printf "Compiling SASS..."
