@@ -1,7 +1,7 @@
 {
-  "dbAddress": "",
-  "dbUser": "",
-  "dbPassword": "",
-  "dbName": "",
-  "dbSslMode": ""
+  "dbAddress": "127.0.0.1",
+  "dbUser": "snowfall",
+  "dbPassword": "1234",
+  "dbName": "snowfall",
+  "dbSslMode": "disable"
 }
