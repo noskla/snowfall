@@ -20,6 +20,7 @@ func main() {
 	Here, _ = os.Executable()
 	Cfg = loadConfig("config.json")
 	Database = connectToDatabase(Cfg.DBAddress, Cfg.DBUser, Cfg.DBPassword, Cfg.DBName, Cfg.DBSslMode)
+	createTablesIfNotExists(Database)
 
 	router := gin.Default()
 
