@@ -32,5 +32,6 @@ func main() {
 	router.Static("/static", staticPath)
 
 	InitFrontRouter(router)
+	InitAPIRouter(router)
 	log.Fatalln(router.Run())
 }
