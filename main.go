@@ -3,7 +3,9 @@ package main
 import (
 	"database/sql"
 	"log"
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +18,9 @@ var Cfg config
 var Database *sql.DB
 
 func main() {
+	rand.Seed(time.Now().UTC().UnixNano())
 	//gin.SetMode(gin.ReleaseMode)
+
 	Here, _ = os.Executable()
 	Cfg = loadConfig("config.json")
 	Database = connectToDatabase(Cfg.DBAddress, Cfg.DBUser, Cfg.DBPassword, Cfg.DBName, Cfg.DBSslMode)
