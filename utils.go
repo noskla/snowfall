@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"math/rand"
 	"os"
 )
 
@@ -26,4 +27,13 @@ func getDirectoryPath(name string) string {
 		}
 	}
 	return path
+}
+
+var runePool = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+func getRandomString(length int) string {
+	randStr := make([]rune, length)
+	for i := range randStr {
+		randStr[i] = runePool[rand.Intn(len(runePool))]
+	}
+	return string(randStr)
 }
