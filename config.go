@@ -7,11 +7,16 @@ import (
 )
 
 type config struct {
-	DBAddress  string `json:"dbAddress"`
-	DBUser     string `json:"dbUser"`
-	DBPassword string `json:"dbPassword"`
-	DBName     string `json:"dbName"`
-	DBSslMode  string `json:"dbSslMode"`
+	DBAddress        string `json:"dbAddress"`
+	DBUser           string `json:"dbUser"`
+	DBPassword       string `json:"dbPassword"`
+	DBName           string `json:"dbName"`
+	DBSslMode        string `json:"dbSslMode"`
+	RabbitMQAddress  string `json:"rabbitMQAddress"`
+	RabbitMQPort     string `json:"rabbitMQPort"`
+	RabbitMQUsername string `json:"rabbitMQUsername"`
+	RabbitMQPassword string `json:"rabbitMQPassword"`
+	RabbitMQSecure   bool   `json:"rabbitMQSecure"`
 }
 
 func loadConfig(filename string) config {

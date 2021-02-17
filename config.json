@@ -3,5 +3,10 @@
   "dbUser": "snowfall",
   "dbPassword": "1234",
   "dbName": "snowfall",
-  "dbSslMode": "disable"
+  "dbSslMode": "disable",
+  "rabbitMQAddress": "127.0.0.1",
+  "rabbitMQPort": "5672",
+  "rabbitMQUsername": "guest",
+  "rabbitMQPassword": "guest",
+  "rabbitMQSecure": false
 }
