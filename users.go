@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/streadway/amqp"
 	"golang.org/x/crypto/bcrypt"
 	"regexp"
 )
@@ -50,6 +51,9 @@ func createUser(username string, password string, discord string) (bool, string)
 	if errorOccurred(err, false) {
 		return false, "Database error (Transaction commit)"
 	}
+
+	RabbitMQChannel.Publish("", "SendDiscordValidationMessage", false, false, amqp.Publishing{
+		ContentType: "text/plain", Body: []byte(discord + ":" + discordConfirm)})
 
 	return true, userID
 
