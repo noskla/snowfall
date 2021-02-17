@@ -58,3 +58,45 @@ func createUser(username string, password string, discord string) (bool, string)
 	return true, userID
 
 }
+
+func confirmDiscord(userID string, discordConfirm string) (bool, string) {
+
+	tx, err := Database.Begin()
+	if errorOccurred(err, false) {
+		return false, "Database error (Transaction begin)"
+	}
+
+	stmt, err := tx.Prepare(`select discordconfirm from users where id = $1`)
+	if errorOccurred(err, false) {
+		return false, "Database error (Transaction prepare)"
+	}
+
+	var discordConfirmDB string
+	err = stmt.QueryRow(userID).Scan(&discordConfirmDB)
+	if errorOccurred(err, false) {
+		return false, "User does not exist"
+	}
+
+	if discordConfirmDB != discordConfirm {
+		return false, "Confirmation code is not correct"
+	}
+	stmt.Close()
+	stmt, err = tx.Prepare(`update users set discordconfirm = null where id = $1`)
+	if errorOccurred(err, false) {
+		return false, "Database error (Transaction prepare 2)"
+	}
+	defer stmt.Close()
+
+	row := stmt.QueryRow(userID)
+	if errorOccurred(row.Err(), false) {
+		return false, "Database error (Transaction query 2)"
+	}
+
+	err = tx.Commit()
+	if errorOccurred(err, false) {
+		return false, "Database error (Transaction commit)"
+	}
+
+	return true, "Discord confirmed"
+
+}
