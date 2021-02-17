@@ -63,7 +63,7 @@ func ValidateAPIKey(apiKey string) (bool, uint8) {
 		return false, 0
 	}
 
-	stmt, err := tx.Prepare(`select users.admin from keys left join users on users.id = keys.owner where keys.authkey = $1`)
+	stmt, err := tx.Prepare(`select users.admin from keys left join users on users.id = keys.owner where keys.authkey = $1 and keys.expiresafter >= now()`)
 	if errorOccurred(err, false) {
 		return false, 0
 	}
