@@ -21,7 +21,7 @@ func createTablesIfNotExists(database *sql.DB) {
 
 	queries := []string{
 		"create extension if not exists \"uuid-ossp\"",
-		"create table if not exists rooms (id uuid default uuid_generate_v4(), name varchar not null, description text, primary key (id))",
+		"create table if not exists rooms (id uuid default uuid_generate_v4(), name varchar not null, description text, streamURL varchar, primary key (id))",
 		"create table if not exists events (id uuid default uuid_generate_v4(), roomID uuid, startDate date not null, endDate date not null, organizerID uuid[], description text, primary key (id))",
 		"create table if not exists stands (id uuid default uuid_generate_v4(), name varchar not null, description text, offers uuid[], owners uuid[])",
 		"create table if not exists standOffers (id uuid default uuid_generate_v4(), name varchar not null, price int default 50)",
