@@ -26,6 +26,7 @@ func createTablesIfNotExists(database *sql.DB) {
 		"create table if not exists stands (id uuid default uuid_generate_v4(), name varchar not null, description text, offers uuid[], owners uuid[])",
 		"create table if not exists standOffers (id uuid default uuid_generate_v4(), name varchar not null, price int default 50)",
 		"create table if not exists users (id uuid default uuid_generate_v4(), name varchar not null, discord varchar not null, discordConfirm varchar, password varchar not null, admin boolean default false)",
+		"create table if not exists keys (authKey varchar(26) unique not null default substring(md5(random()::text), 0, 25), owner uuid not null, expiresAfter date default null)",
 	}
 
 	for _, query := range queries {
