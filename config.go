@@ -20,8 +20,7 @@ type config struct {
 }
 
 func loadConfig(filename string) config {
-	configPath := getDirectoryPath(filename)
-	configFile, err := os.Open(configPath)
+	configFile, err := os.Open(filename)
 	errorOccurred(err, true)
 	defer configFile.Close()
 
