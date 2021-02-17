@@ -8,11 +8,21 @@ git clone git://github.com/noskla/snowfall.git
 cd .\snowfall\
 .\build.ps1
 ```
-Builing on Linux/FreeBSD:
+Building on Linux/FreeBSD:
 ```
 git clone git://github.com/noskla/snowfall.git
 cd snowfall
 chmod +x build.sh
 ./build.sh
 ```
-
+Building and deploying a Docker image:
+```
+git clone git://github.com/noskla/snowfall.git
+cd snowfall
+chmod +x build.sh
+./build.sh
+docker build -t snowfall .
+docker run --name snowfall -p 20000:20000 \
+    -v /path/to/config.json:/data/config.json \
+    -d snowfall
+```
