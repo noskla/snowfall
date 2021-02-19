@@ -1,3 +1,5 @@
+$WinOnly = $False
+Write-Host $Args
 if ( $null -eq (Get-Command "go.exe" -ErrorAction SilentlyContinue) ) {
     Write-Host "Go binary not found. Install golang using 'choco install go' " -NoNewline
     Write-Host "or by visiting https://golang.org/"
@@ -14,20 +16,36 @@ if ( -not (Test-Path -Path '.\dist' -PathType Container) ) {
 } else {
     Remove-Item -Path '.\dist\*' -Recurse
 }
- 
+
 Write-Host "Compiling... " -NoNewline
 $env:GOARCH = 'amd64'
-ForEach ($os in 'windows','linux','freebsd') {
-    $env:GOOS = $os
-    $filepath = ".\dist\snowfall.$os"
-    if ( $os -eq 'windows' ) {
-        $filepath += '.exe'
-    }
+if ( $WinOnly -eq $True ) {
+    $env:GOOS = 'windows'
+    $filepath = ".\dist\snowfall.windows.exe"
     go.exe build -o $filepath
     if ($?) {
-        Write-Host "$os ok," -NoNewline
+        Write-Host "windows ok, " - NoNewline
     } else {
-        Write-Host "$os failed," -NoNewline
+        Write-Host "windows failed, " -NoNewline
+    }
+} else {
+    ForEach ($os in 'windows', 'linux', 'freebsd')
+    {
+        $env:GOOS = $os
+        $filepath = ".\dist\snowfall.$os"
+        if ($os -eq 'windows')
+        {
+            $filepath += '.exe'
+        }
+        go.exe build -o $filepath
+        if ($?)
+        {
+            Write-Host "$os ok," -NoNewline
+        }
+        else
+        {
+            Write-Host "$os failed," -NoNewline
+        }
     }
 }
 Write-Host "Done"
