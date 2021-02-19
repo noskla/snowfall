@@ -1,14 +1,12 @@
-@import 'https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap'
+@import 'https://fonts.googleapis.com/css2?family=Assistant:wght@200;400&display=swap'
 
-$font: 'Spicy Rice', 'Work Sans', 'Open Sans', 'Roboto', sans-serif
+$font: 'Assistant', 'Open Sans', 'Roboto', sans-serif
 
-$page-background: #101b21
-$nav-background: #121133
-$stream-background: #0a1f2b
+$page-background: #41454b
+$nav-background: #282e3a
 
 $standard-color: #b3b3b3
 $link-color: #d9d9d9
-$link-visited-color: #9f9eba
 $link-hover-color: #f2f2f2
 $header-color: #e8e8e8
 
@@ -19,8 +17,21 @@ body
   margin: 0
   padding: 0
 
+body a,
+body a:visited
+  color: $link-color
+  text-decoration: none
 
+body a:hover
+  color: $link-hover-color
 
+#background
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
 
-
-
+#background svg
+  width: 100vw
+  height: 100vh
