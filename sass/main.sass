@@ -16,14 +16,12 @@ body
   font-family: $font
   margin: 0
   padding: 0
-
-body a,
-body a:visited
-  color: $link-color
-  text-decoration: none
-
-body a:hover
-  color: $link-hover-color
+  a,
+  a:visited
+    color: $link-color
+    text-decoration: none
+  a:hover
+    color: $link-hover-color
 
 #background
   position: fixed
@@ -31,7 +29,40 @@ body a:hover
   left: 0
   width: 100vw
   height: 100vh
+  svg
+    width: 100vw
+    height: 100vh
 
-#background svg
-  width: 100vw
-  height: 100vh
+#navbar
+  $nav-height: 80px
+  background: $nav-background
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  height: $nav-height
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, .2)
+  line-height: $nav-height
+  box-sizing: border-box
+  padding: 0 15px
+  #logo
+    background: url("/static/icons/snowflake.png")
+    background-size: cover
+    width: 50px
+    height: 50px
+    display: inline-block
+    vertical-align: middle
+  #rooms
+    display: inline-block
+    vertical-align: top
+    line-height: $nav-height
+  #generalNav
+    display: inline-block
+    vertical-align: top
+    background: linear-gradient(to left, $nav-background 90%, transparent 10%)
+    box-sizing: border-box
+    padding-left: 10%
+    float: right
+    height: $nav-height
+    a
+      margin: 0 8px
