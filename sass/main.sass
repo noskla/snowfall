@@ -33,6 +33,10 @@ p.error
   color: #fff
   vertical-align: middle
 
+.loading
+  background: url(/static/icons/loading.svg)
+  background-size: cover
+
 #background
   position: fixed
   top: 0
@@ -112,19 +116,27 @@ p.error
   background: $nav-background
   box-shadow: 4px 4px 10px rgba(0, 0, 0, .2)
   margin: 2.5% auto 10px auto
+  h1
+    margin-top: 2px
   form
     background: $nav-darker-background
-  input
-    background: $nav-darker-background
-    color: $standard-color
-    padding: 16px
-    border: none
-    border-left: solid 1px $page-background
-    transition: all ease-in-out .2s
-    &[type=text]:focus, &[type=password]:focus
-      background: black
-      outline: none
-    &[type=submit]
+    input
+      background: $nav-darker-background
+      color: $standard-color
+      padding: 16px
+      border: none
+      border-left: solid 1px $page-background
+      transition: all ease-in-out .2s
+      &[type=text]:focus, &[type=password]:focus
+        background: black
+        outline: none
+    #accountRegisterSubmit
+      color: $standard-color
+      padding: 16px
+      border: none
+      border-left: solid 1px $page-background
       cursor: pointer
       float: right
-      background: linear-gradient(to left, $nav-darker-background, $nav-darker-background, $nav-background)
+      background: linear-gradient(to top right, $nav-darker-background, $nav-background)
+      &:focus
+        outline: none

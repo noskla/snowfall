@@ -34,4 +34,16 @@ $(document).ready(() => {
                     {duration: 200, iterations: 1, fill: 'forwards', easing: 'ease-out'});
     }});
 
+    $( '#accountRegisterSubmit' ).on({click: ev => {
+        ev.preventDefault();
+        $('#accountRegisterSubmit')
+            .empty()
+            .prop('disabled', 'true');
+        $( '<div></div>' )
+            .addClass('loading')
+            .css('width', '16px')
+            .css('height', '16px')
+            .appendTo($('#accountRegisterSubmit'));
+    }});
+
 });

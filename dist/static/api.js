@@ -1,6 +1,13 @@
 api = {
+    _roomCache: [],
     getRooms: async () => {
-        let res = await fetch('/api/rooms');
-        return await res.json();
+        if (this._roomCache)
+            return this._roomCache;
+        let res = await (await fetch('/api/rooms')).json();
+        if (!res.success)
+            return res.reason;
+        this._roomCache = res.rooms;
+        return this._roomCache;
     },
+
 }
