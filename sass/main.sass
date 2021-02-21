@@ -1,9 +1,11 @@
 @import 'https://fonts.googleapis.com/css2?family=Assistant:wght@200;400&display=swap'
 
-$font: 'Assistant', 'Open Sans', 'Roboto', sans-serif
+$little-text-font: 'Assistant', 'Open Sans', 'Roboto', sans-serif
+$lot-of-text-font: 'Open Sans', 'Roboto', sans-serif
 
 $page-background: #41454b
 $nav-background: #282e3a
+$nav-darker-background: #15191f
 
 $standard-color: #b3b3b3
 $link-color: #d9d9d9
@@ -14,7 +16,7 @@ $error-color: #db7f7f
 html,
 body
   background: $page-background
-  font-family: $font
+  font-family: $little-text-font
   margin: 0
   padding: 0
   a,
@@ -98,3 +100,31 @@ p.error
     height: $nav-height
     a
       margin: 0 8px
+
+#accountRegister
+  display: none
+  font-family: $lot-of-text-font
+  padding: 20px
+  max-width: 800px
+  width: 60%
+  max-height: 90%
+  color: $standard-color
+  background: $nav-background
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, .2)
+  margin: 2.5% auto 10px auto
+  form
+    background: $nav-darker-background
+  input
+    background: $nav-darker-background
+    color: $standard-color
+    padding: 16px
+    border: none
+    border-left: solid 1px $page-background
+    transition: all ease-in-out .2s
+    &[type=text]:focus, &[type=password]:focus
+      background: black
+      outline: none
+    &[type=submit]
+      cursor: pointer
+      float: right
+      background: linear-gradient(to left, $nav-darker-background, $nav-darker-background, $nav-background)

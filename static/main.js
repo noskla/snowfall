@@ -24,4 +24,14 @@ $(document).ready(() => {
         }
     })();
 
+    $( '#navAccountRegBtn' ).on({click: ev => {
+                ev.preventDefault();
+                $( '#accountRegister' ).show();
+                // jQuery animate breaks Firefox?
+                accountRegister.animate([
+                        {transform: 'translateY(-10px)'},
+                        {transform: 'translateY(0px)'}],
+                    {duration: 200, iterations: 1, fill: 'forwards', easing: 'ease-out'});
+    }});
+
 });

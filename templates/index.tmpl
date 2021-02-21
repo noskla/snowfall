@@ -5,7 +5,7 @@
         <title>Snowfall 2021 &mdash; Teraz online!</title>
         <link rel="stylesheet" type="text/css" media="all" href="/static/css/main.css" />
         <script type="text/javascript" src="/static/api.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script type="text/javascript" src="/static/main.js"></script>
     </head>
     <body>
@@ -23,11 +23,30 @@
                     <!-- JS-generated room list -->
                 </div>
                 <div id="generalNav">
-                    <a href="/rooms">Pokoje</a>
-                    <a href="/stands">Stoiska</a>
-                    <a href="/account">Konto</a>
+                    <a href="/rooms" id="navRoomsBtn">Pokoje</a>
+                    <a href="/stands" id="navStandsBtn">Stoiska</a>
+                    <a href="/account" id="navAccountRegBtn">Konto</a>
                 </div>
             </nav>
+        </div>
+        <div id="accountRegister">
+            <h1>Rejestracja uczestnika</h1>
+            <p>
+                Posiadanie konta jest całkowicie dobrowolne oraz służy jedynie w ułatwieniu dostępu do
+                kluczowych elementów aplikacji, w tym administracji lub edycji i organizacji pokoi, wydarzeń i
+                stoisk. By uzyskać dostęp do swojego stoiska, którym zarządzasz skontaktuj się z organizatorami
+                wydarzenia.
+            </p>
+            <p>
+                Do utworzenia konta wymagane jest konto Discord, pobyt na <a href="https://discord.gg/7ZVMJ9egn9" target="_blank">serwerze Discord wydarzenia</a>
+                oraz pozwolenie na otrzymywanie wiadomości prywatnych od użytkowników tego serwera w ustawieniach swojego konta Discord.
+            </p>
+            <form>
+                <input type="text" placeholder="Nazwa użytkownika" />
+                <input type="text" placeholder="Tag Discord (np. arkalii#0094)" />
+                <input type="password" placeholder="Hasło" />
+                <input type="submit" value="Utwórz konto" id="accountRegisterSubmit" />
+            </form>
         </div>
     </body>
 </html>
