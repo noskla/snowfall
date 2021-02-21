@@ -40,6 +40,27 @@ p.error
   svg
     width: 100vw
     height: 100vh
+    transition: all linear .1s
+    circle
+      transform: scale(1.02)
+      @keyframes svgCircleAnimation1
+        0%
+          transform: scale(1.02) translate(0) skew(0)
+        50%
+          transform: scale(1) translate(10px, -4px) skew(10deg)
+        100%
+          transform: scale(1.02) translate(0) skew(0)
+      @keyframes  svgCircleAnimation2
+        0%
+          transform: scale(1.05) translate(0)
+        50%
+          transform: scale(1) translate(-2px, 4px)
+        100%
+          transform: scale(1.05) translate(0)
+      &:first-child
+        animation: svgCircleAnimation1 14s ease infinite
+      &:last-child
+        animation: svgCircleAnimation2 9s ease infinite
 
 #navbar
   $nav-height: 80px
