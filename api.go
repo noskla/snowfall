@@ -10,6 +10,7 @@ func InitAPIRouter(router *gin.Engine) {
 	{
 		APIRouter.GET("/rooms", routeGetAllRooms)
 		APIRouter.POST("/user", routeCreateUser)
+		APIRouter.POST("/user/:id/discord", routeConfirmDiscord)
 	}
 }
 
@@ -39,6 +40,35 @@ func routeCreateUser(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"success": true,
 			"uuid": res,
+		})
+	}
+}
+
+type routeConfirmDiscordPOSTBody struct {
+	DiscordKey string `form:"discordKey" json:"discordKey" binding:"required"`
+}
+func routeConfirmDiscord(c *gin.Context) {
+	var data routeConfirmDiscordPOSTBody
+	err := c.ShouldBind(&data)
+	if errorOccurred(err, false) {
+		c.JSON(400, gin.H{
+			"success": false,
+			"reason": "Missing arguments",
+		})
+		return
+	}
+
+	userID := c.Param("id")
+	ok, res := confirmDiscord(userID, data.DiscordKey)
+	if !ok {
+		c.JSON(400, gin.H{
+			"success": false,
+			"reason": res,
+		})
+	} else {
+		c.JSON(200, gin.H{
+			"success": true,
+			"reason": "Discord verified",
 		})
 	}
 }
