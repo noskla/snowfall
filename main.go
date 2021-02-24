@@ -35,6 +35,7 @@ func main() {
 	staticPath := getDirectoryPath("static/")
 	router.Static("/static", staticPath)
 
+	InitRabbitMQ()
 	InitFrontRouter(router)
 	InitAPIRouter(router)
 	log.Fatalln(router.Run())
