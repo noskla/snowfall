@@ -14,6 +14,12 @@ api = {
         return await (await fetch('/api/user', {
             method: 'POST', headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                username: username, password: password, discord: discord})})).json()
+                username: username, password: password, discord: discord})})).json();
+    },
+
+    confirmDiscord: async (userID, confirmCode) => {
+        return await (await fetch(`/api/user/${userID}/discord`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({discordKey: confirmCode})})).json();
     }
 }

@@ -45,7 +45,7 @@ func routeCreateUser(c *gin.Context) {
 }
 
 type routeConfirmDiscordPOSTBody struct {
-	DiscordKey string `form:"discordKey" json:"discordKey" binding:"required"`
+	DiscordKey string `form:"discordkey" json:"discordkey" binding:"required"`
 }
 func routeConfirmDiscord(c *gin.Context) {
 	var data routeConfirmDiscordPOSTBody

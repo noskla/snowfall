@@ -52,13 +52,34 @@ $(document).ready(() => {
                    .prop('disabled', 'false')
                    .text('Utwórz konto');
                $('#accountRegister').hide();
-               $('#accountDiscordConfirm').show();
+               $('#accountDiscordConfirm')
+                   .attr('userID', res.uuid)
+                   .show();
                accountDiscordConfirm.animate([
                        {transform: 'translateY(-10px)'},
                        {transform: 'translateY(0px)'}],
                    {duration: 200, iterations: 1, fill: 'forwards', easing: 'ease-out'});
            }
         });
+    }});
+
+    $( '#accountDiscordConfirmSubmit' ).on({click: async ev => {
+        ev.preventDefault();
+            $('#accountDiscordConfirmSubmit')
+                .empty()
+                .prop('disabled', 'true');
+            $( '<div></div>' )
+                .addClass('loading')
+                .css('width', '16px')
+                .css('height', '16px')
+                .appendTo($('#accountDiscordConfirmSubmit'));
+            await api.confirmDiscord($('#accountDiscordConfirm').attr('userID'),
+                $('#accountDiscordConfirm form input:nth-child(1)').val()).then(res => {
+                    $('#accountDiscordConfirm').hide();
+                    $(`<div>${res.reason}</div>`)
+                        .addClass('error')
+                        .appendTo(document.body);
+                });
     }});
 
 });
