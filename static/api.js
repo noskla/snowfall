@@ -1,13 +1,24 @@
 api = {
     _roomCache: [],
     getRooms: async () => {
-        if (this._roomCache)
-            return this._roomCache;
-        let res = await (await fetch('/api/rooms')).json();
-        if (!res.success)
-            return res.reason;
-        this._roomCache = res.rooms;
+        if (!this._roomCache) {
+            let res = await (await fetch('/api/rooms')).json();
+            if (!res.success)
+                return res.reason;
+            this._roomCache = res.rooms;
+        }
         return this._roomCache;
+    },
+
+    _standCache: [],
+    getStands: async () => {
+        if (!this._standCache) {
+            let res = await (await fetch('/api/stands')).json();
+            if (!res.success)
+                return res.reason;
+            this._standCache = res.stands;
+        }
+        return this._standCache
     },
 
     newUser: async (username, password, discord) => {
