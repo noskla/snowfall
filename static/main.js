@@ -33,6 +33,22 @@ $(document).ready(() => {
                 .on({click: () => window.open(stand.description, '_blank')})
                 .appendTo($('#stands'))))();
 
+    let prevScale = 0.9;
+    let scaleMap = () => {
+            while (buildingLayout.getBoundingClientRect().height + 120 >= $(window).height()) {
+                if (prevScale < 0.5) return;
+                prevScale -= .05
+                $('#buildingLayout').css('transform', `translate(-50%, -50%) scale(${prevScale.toString()})`);
+            }
+            while (buildingLayout.getBoundingClientRect().height + 200 <= $(window).height()) {
+                if (prevScale > 1.5) return;
+                prevScale += .05
+                $('#buildingLayout').css('transform', `translate(-50%, -50%) scale(${prevScale.toString()})`);
+            }
+    }
+    scaleMap(); window.onresize = scaleMap;
+
+
     $('#toilet').on({click: ev => {
         ev.preventDefault();
         (new Audio('/static/easter.mp3')).play();
