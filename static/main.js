@@ -26,6 +26,13 @@ $(document).ready(() => {
 
     })();
 
+    (async () =>
+        (await api.getStands()).forEach(stand =>
+            $( `<div>${stand.name}</div>` )
+                .addClass('stand')
+                .on({click: () => window.open(stand.description, '_blank')})
+                .appendTo($('#stands'))))();
+
     $('#toilet').on({click: ev => {
         ev.preventDefault();
         (new Audio('/static/easter.mp3')).play();
