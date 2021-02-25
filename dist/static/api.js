@@ -10,4 +10,16 @@ api = {
         return this._roomCache;
     },
 
+    newUser: async (username, password, discord) => {
+        return await (await fetch('/api/user', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: username, password: password, discord: discord})})).json();
+    },
+
+    confirmDiscord: async (userID, confirmCode) => {
+        return await (await fetch(`/api/user/${userID}/discord`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({discordKey: confirmCode})})).json();
+    }
 }

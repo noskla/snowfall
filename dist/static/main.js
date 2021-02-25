@@ -22,7 +22,14 @@ $(document).ready(() => {
                         .appendTo('#rooms')
                 );
         }
+        $('#buildingLayout div[class^="r"]').each((i, r) => (r.id === '') ? $(`<label>${rooms[i].name}</label>`).addClass('roomLabel').appendTo(r) : '');
+
     })();
+
+    $('#toilet').on({click: ev => {
+        ev.preventDefault();
+        (new Audio('/static/easter.mp3')).play();
+    }});
 
     $( '#navAccountRegBtn' ).on({click: ev => {
                 ev.preventDefault();
@@ -34,7 +41,7 @@ $(document).ready(() => {
                     {duration: 200, iterations: 1, fill: 'forwards', easing: 'ease-out'});
     }});
 
-    $( '#accountRegisterSubmit' ).on({click: ev => {
+    $( '#accountRegisterSubmit' ).on({click: async ev => {
         ev.preventDefault();
         $('#accountRegisterSubmit')
             .empty()
@@ -44,6 +51,42 @@ $(document).ready(() => {
             .css('width', '16px')
             .css('height', '16px')
             .appendTo($('#accountRegisterSubmit'));
+        await api.newUser($('#accountRegister form input:nth-child(1)').val(), $('#accountRegister form input:nth-child(3)').val(),
+            $('#accountRegister form input:nth-child(2)').val()).then(res => {
+           if (res.success) {
+               $('#accountRegisterSubmit')
+                   .empty()
+                   .prop('disabled', 'false')
+                   .text('Utwórz konto');
+               $('#accountRegister').hide();
+               $('#accountDiscordConfirm')
+                   .attr('userID', res.uuid)
+                   .show();
+               accountDiscordConfirm.animate([
+                       {transform: 'translateY(-10px)'},
+                       {transform: 'translateY(0px)'}],
+                   {duration: 200, iterations: 1, fill: 'forwards', easing: 'ease-out'});
+           }
+        });
+    }});
+
+    $( '#accountDiscordConfirmSubmit' ).on({click: async ev => {
+        ev.preventDefault();
+            $('#accountDiscordConfirmSubmit')
+                .empty()
+                .prop('disabled', 'true');
+            $( '<div></div>' )
+                .addClass('loading')
+                .css('width', '16px')
+                .css('height', '16px')
+                .appendTo($('#accountDiscordConfirmSubmit'));
+            await api.confirmDiscord($('#accountDiscordConfirm').attr('userID'),
+                $('#accountDiscordConfirm form input:nth-child(1)').val()).then(res => {
+                    $('#accountDiscordConfirm').hide();
+                    $(`<div>${res.reason}</div>`)
+                        .addClass('error')
+                        .appendTo(document.body);
+                });
     }});
 
 });
