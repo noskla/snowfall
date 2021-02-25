@@ -12,6 +12,8 @@ $link-color: #d9d9d9
 $link-hover-color: #f2f2f2
 $header-color: #e8e8e8
 $error-color: #db7f7f
+$room-color: #b5b5b5
+$room-highlight-color: #22454f
 
 html,
 body
@@ -153,3 +155,118 @@ p.error
   border: solid 1.25px $header-color
   width: 1600px
   height: 800px
+  div[class^="r"]
+    box-sizing: border-box
+    display: inline-block
+    vertical-align: top
+    transition: all ease .2s
+    .roomLabel
+      font-family: $little-text-font
+      color: $standard-color
+      font-size: 20px
+      display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+  div[class^="r"]:first-child .roomLabel
+      top: 25%
+  .r1
+    position: relative
+    width: 30%
+    height: 25%
+    border-right: solid 1px $room-color
+    &:hover
+      background: $room-highlight-color
+    div:nth-child(1)
+      width: 25%
+      height: 50%
+      position: absolute
+      top: 50%
+      border-bottom: solid 1px $room-color
+    div:nth-child(2)
+      width: 75%
+      height: 50%
+      position: absolute
+      top: 50%
+      left: calc(25% + 1px)
+      border-left: solid 1px $room-color
+      border-top: solid 1px $room-color
+      border-bottom: none
+      border-right: solid 1px $room-color
+      pointer-events: none
+      background: linear-gradient(to bottom right, #35383d, #393d42)
+  .r2
+    position: relative
+    width: calc(32% - 2px)
+    height: 25%
+    margin-left: 2px
+    border-bottom: solid 1px $room-color
+    border-right: solid 1px $room-color
+    &:hover
+      background: $room-highlight-color
+  .r3
+    position: relative
+    width: 20%
+    height: 22.5%
+    border-bottom: solid 1px $room-color
+    border-right: solid 1px $room-color
+    &:hover
+      background: $room-highlight-color
+  .r4
+    position: absolute
+    width: 10%
+    height: 18%
+    border-top: solid 1px $room-color
+    bottom: 0
+    left: 0
+    &:hover
+      background: $room-highlight-color
+  .r5
+    position: absolute
+    width: 25%
+    height: 27.5%
+    border-left: solid 1px $room-color
+    border-top: solid 1px $room-color
+    border-right: solid 1px $room-color
+    bottom: 0
+    left: 10%
+    &:hover
+      background: $room-highlight-color
+  .r6
+    position: absolute
+    width: 10%
+    height: 27.5%
+    border-top: solid 1px $room-color
+    border-right: solid 1px $room-color
+    bottom: 0
+    left: 35%
+    &:hover
+      background: $room-highlight-color
+  .r7
+    position: absolute
+    width: 25%
+    height: 27.5%
+    border-top: solid 1px $room-color
+    bottom: 0
+    left: 45%
+    &:hover
+      background: $room-highlight-color
+  .r8
+    position: absolute
+    width: 30%
+    height: 70%
+    border-top: solid 1px $room-color
+    border-left: solid 1px $room-color
+    bottom: 0
+    right: 0
+    &:hover
+      background: $room-highlight-color
+  .l1
+    font-family: $little-text-font
+    font-size: 20px
+    color: $standard-color
+    position: absolute
+    top: 90px
+    right: 5.5%
+

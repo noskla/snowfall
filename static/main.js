@@ -22,7 +22,14 @@ $(document).ready(() => {
                         .appendTo('#rooms')
                 );
         }
+        $('#buildingLayout div[class^="r"]').each((i, r) => (r.id === '') ? $(`<label>${rooms[i].name}</label>`).addClass('roomLabel').appendTo(r) : '');
+
     })();
+
+    $('#toilet').on({click: ev => {
+        ev.preventDefault();
+        (new Audio('/static/easter.mp3')).play();
+    }});
 
     $( '#navAccountRegBtn' ).on({click: ev => {
                 ev.preventDefault();
