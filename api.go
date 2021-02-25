@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"log"
 )
 
 func InitAPIRouter(router *gin.Engine) {
 	APIRouter := router.Group("/api")
 	{
 		APIRouter.GET("/rooms", routeGetAllRooms)
+		APIRouter.GET("/stands", routeGetAllStands)
 		APIRouter.POST("/user", routeCreateUser)
 		APIRouter.POST("/user/:id/discord", routeConfirmDiscord)
 	}
@@ -76,12 +76,22 @@ func routeConfirmDiscord(c *gin.Context) {
 
 func routeGetAllRooms(c *gin.Context) {
 	ok, answer, rooms := getAllRooms()
-	log.Println(rooms)
 	if !ok {
 		c.JSON(500, gin.H{
 			"success": false, "reason": answer})
 	} else {
 		c.JSON(200, gin.H{
 			"success": true, "answer": answer, "rooms": rooms})
+	}
+}
+
+func routeGetAllStands(c *gin.Context) {
+	ok, answer, stands := getAllStands()
+	if !ok {
+		c.JSON(500, gin.H{
+			"success": false, "reason": answer})
+	} else {
+		c.JSON(200, gin.H{
+			"success": true, "answer": answer, "stands": stands})
 	}
 }
