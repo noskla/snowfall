@@ -9,8 +9,8 @@ func InitAPIRouter(router *gin.Engine) {
 	{
 		APIRouter.GET("/rooms", routeGetAllRooms)
 		APIRouter.GET("/stands", routeGetAllStands)
-		APIRouter.POST("/user", routeCreateUser)
-		APIRouter.POST("/user/:id/discord", routeConfirmDiscord)
+		//APIRouter.POST("/user", routeCreateUser)
+		//APIRouter.POST("/user/:id/discord", routeConfirmDiscord)
 	}
 }
 
