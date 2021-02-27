@@ -7,6 +7,7 @@ $(document).ready(() => {
                 $( `<p>${rooms.reason}</p>` )
                     .addClass('error')
                     .appendTo('#rooms');
+                break
             case "object":
                 if (rooms == null)
                     return $( `<p>Żaden pokój nie został utworzony</p>` )
