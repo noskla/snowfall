@@ -1,4 +1,4 @@
-# ❄️ Sno
+# ❄️ Snowfall
 
 ### Project is abandoned
 Deadlines were way too short and had very little time to spend on this project so it will stay archived indefinitely
