@@ -1,5 +1,10 @@
-# ❄️ Snowfall
+# ❄️ Sno
 
+### Project is abandoned
+Deadlines were way too short and had very little time to spend on this project so it will stay archived indefinitely
+and most likely won't be developed anymore in this form on this repository.
+
+### About
 A project made for "Snowfall Ponymeet" event performed online in 2021 by Bronies Silesia.
 
 Building on Windows:
